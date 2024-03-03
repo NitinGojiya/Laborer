@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Special+Elite&family=Spectral+SC:wght@500&display=swap" rel="stylesheet">
-    <title>Login - Wine</title>
+    <title>Register - Wine</title>
     <style>
     *{
         padding: 0;
@@ -22,9 +22,8 @@
         outline: none;
     }
     :root{
-        --bg-color: #c0e4f4;
+        --bg-color: #191919;
         --secont-bg-color: #101010;
-        --main-color: #fff;
         --text-color: #000;
         --second-color: #000;
         --other-color: #808080;
@@ -34,7 +33,7 @@
         --p-font: 1.4rem;
     }
     body{
-        background-color: var(--bg-color);
+        background-color: #c0e4f4;
     }
     .sticky1{
         position: fixed;
@@ -85,9 +84,8 @@
         font-size: 35px;
         text-align: left;
     }
-    .login{
+    .register{
         text-align: center;
-        align-items: center;
     }
     .heading{
         font-family: 'Caveat', cursive;
@@ -96,7 +94,6 @@
         margin-bottom: 3rem;
         color: #000;
         text-align: center;
-        margin-top: 140px;
     }
     .log-form{
         display: grid;
@@ -118,7 +115,7 @@
         font-weight: 600;
         transition: all ease .40s;
         font-family: 'Special Elite', serif;
-        align-items: center;
+        
     }
     .ip2-mobile input{
         border: solid #000;
@@ -147,82 +144,64 @@
     </style>
 </head>
 <body>
-<form method="POST" action="login.php">
+<form method="POST" action="register.php">
     <!--header1 section-->
     <header class="sticky1">
     <span class="logo">Laborer</span>
+       
         <ul class="navlist">
-        <li><a href="home.php">home</a></li>
-            <li><a href="#login">Login</a></li>
-            <li><a href="register.php">Register</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="#register">Register</a></li>
         </ul>
     </header>
 
-    <section class="login" id="login">
+    <section class="register" id="register">
         <div class="heading">
-            Login
+            Register
         </div>
         <div class="log-form">
-            <div class="ip1-mobile"><p>Mobile Number : </p></div>
-            <div class="ip2-mobile"><input type="text" name="m_no1"></div>
+            <div class="ip1-mobile"><p>your Photo  : </p></div>
+            <div class="photo"><input type="file" name="pic"></div>
         </div>
         <div class="log-form">
-            <div class="ip1-mobile"><p>Password : </p></div>
-            <div class="ip2-mobile"><input type="password" name="psw1"></div>
+            <div class="ip1-mobile"><p>Name : </p></div>
+            <div class="ip2-mobile"><input type="text" name="nm"></div>
+        </div>
+        
+        <div class="log-form">
+            <div class="ip1-mobile"><p>User Name : </p></div>
+            <div class="ip2-mobile"><input type="text" name="u_nm"></div>
+        </div>
+        <div class="log-form">
+            <div class="ip1-mobile"><p>charge Per Day : </p></div>
+            <div class="ip2-mobile"><input type="text" name="cpd"></div>
+        </div>
+        <div class="log-form">
+            <div class="ip1-mobile"><p>Create Password : </p></div>
+            <div class="ip2-mobile"><input type="password" name="psw"></div>
+        </div>
+        <div class="log-form">
+            <div class="ip1-mobile"><p>Work Type : </p></div>
+            <div class="ip2-mobile"><input type="text" name="wk"></div>
         </div>
         <div class="log-form-btn">
-            <div class="submit_1"><p><input class="submit_in" type="submit" name="login" value="Login"></p></div>
-        </div>
-        <div class="log-form-btn">
-            <div class="submit_1"><p><a class="submit_in" href="forgot.php">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="register.php" class="submit_in">New User?</a></p></div>
+            <div class="submit_1"><p><input class="submit_in" type="submit" name="register" value="Register"></p></div>
         </div>
     </section>
 </form>
 </body>
 </html>
 <?php
-if(isset($_POST['login']))
-{
-    $m_no1=$_POST['m_no1'];
-    $psw1=$_POST['psw1'];
+    if(isset($_POST['register']))
+    {
+        $u_nm=$_POST['u_nm'];
+        $m_no=$_POST['m_no'];
+        $psw=$_POST['psw'];
 
-    $con=mysqli_connect('localhost','root','',"wine");
-    $select="select * from user";
-    $qry=mysqli_query($con,$select);
-
-    $con1=mysqli_connect('localhost','root','',"wine");
-    $del="delete from cart";
-    $delque=mysqli_query($con1,$del);
-
-        if($qry)
-        {
-            while ($row = mysqli_fetch_array($qry))
-            {
-                $m_no=$row['m_no'];
-                $psw=$row['psw'];
-                if($m_no1!=$m_no || $psw1!=$psw)
-                {
-                    $cnt=1;
-                }
-
-                else
-                {
-                    $cnt=2;
-                }
-            }
-        }
-            if($cnt==1)
-            {
-                ?>
-                    <script>
-                    alert("Invalid Username or Password!");
-                    </script>
-                <?php
-            }
-            else if($cnt==2)
-            {
-                header('Location: http://localhost/WINE_/home.php');
-                exit;
-            }
-}
+            $con=mysqli_connect('localhost','root','',"wine");
+            $insert="INSERT INTO user VALUES ('$u_nm','$m_no','$psw','null','null','null','null','null')";
+            $query1=mysqli_query($con, $insert);
+            header('Location: http://localhost/WINE_/login.php');
+            exit;
+    }
 ?>

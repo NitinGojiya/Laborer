@@ -7,40 +7,83 @@
     <title>Doctor</title>
     <!-- <link href="css/doctor.css" rel="stylesheet"> -->
     <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
+          *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+        list-style: none;
+        text-decoration: none;
+        scroll-behavior: smooth;
+        border: none;
+        outline: none;
+    }
+    :root{
+        --bg-color: #191919;
+        --secont-bg-color: #101010;
+        --main-color: #fff;
+        --text-color: #000;
+        --second-color: #000;
+        --other-color: #808080;
 
-        .main {
+        --h1-font: 7rem;
+        --h2-font: 7rem;
+        --p-font: 1.1rem;
+    }
+    body{
+        background-color: #c0e4f4;
+    }
+    header{
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: transparent;
+        padding: 28px 11%;
+        border-bottom: 1px solid transparent;
+        transition: all ease .50s;
+    }
+    .logo{
+        color: #000;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .navlist{
+        display: flex;
+    }
+    #menu-icon{
+        font-size: 42px;
+        color: var(--text-color);
+        z-index: 10001;
+        cursor: pointer;
+        display: none;
+    }
+    .navlist a{
+        color: var(--second-color);
+        font-size: var(--p-font);
+        font-weight: 600;
+        margin: 0 40px;
+        transition: all ease .40s;
+        font-family: 'Special Elite', serif;
+    }
+    .navlist a:hover{
+        color: var(--main-color);
+        font-size: 25px;
+        transition: all ease .30s;
+    }
+    section{
+        padding: 120px 19% 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-            width: 1000px;
-            height: auto;
-            margin-top: 77px;
-            margin-left: 90px;
-            /* background-color: red; */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        
 
-        .sub {
-            height: auto;
-            width: 1000px;
-
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .city {
-            position: absolute;
-            top: 51px;
-            left: 351px;
-            width: 465px;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-        }
 
         .card {
             width: 190px;
@@ -53,9 +96,9 @@
         }
 
         .card-inner {
-            width: inherit;
-            height: inherit;
-            background: rgba(255, 255, 255, .05);
+            height: auto;
+            width: 200px;
+            background: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(10px);
             border-radius: 8px;
@@ -63,28 +106,12 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            gap: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
         }
 
-
-        .card:hover {
-            transform: scale(1.04) rotate(1deg);
-        }
-
-
-        @keyframes move-up6 {
-            to {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes move-down1 {
-            to {
-                transform: translateY(10px);
-            }
-        }
-        .city{
-            margin-top: 20px;
-        }
+        
         .s_city {
             border: none;
             appearance: none;
@@ -114,7 +141,7 @@
             color: white;
         }
         #btn_book{
-            background-color: #53ef7d;
+            background-color: skyblue;
             border: none;
             width: 156px;
              height: 32px;
@@ -122,17 +149,27 @@
            
         }
         #btn_book:hover{
-            background-color:#10e64a;
+            color: #000;
+            background-color:darkblue;
         }
         
     </style>
 </head>
 
 <body>
-
+     <!--header section-->
+     <header class="sticky">
+        <span class="logo">Laborer</span>
+        
+        <ul class="navlist">
+            <li><a href="home.php">Home</a></li>
+            <li><a href="Laborer.php">Laborer</a></li>
+            <li><a href="#Contect us">Contect us</a></li>
+            <li><a href="login.php">Login</a></li>
+        </ul>
+    </header>
+    <section class="home" id="home">
     <form action="" method="post">
-        <div class="main">
-            <div class="sub">
             
                 <?php
               
@@ -157,7 +194,7 @@
                                     <h3>Mr.<?php echo $row['name']; ?></h3>
                                 </div>
                                 <div>
-                                    <h6>Exprence:<?php echo $row['w_type']; ?></h6>
+                                    <h6>Work Type:<?php echo $row['w_type']; ?></h6>
                                 </div>
                                 <div>
                                     <h6>chrage:<?php echo $row['charge']; ?></h6>
@@ -175,22 +212,11 @@
                             </div>
                         </div> <?php }
                          ?>
-
-
-
-                     
-
-
-
-
-
-
-            </div>
-
-        </div>
-        <div>
-                         
+                         </div>
+                       
     </form>
+    </section>
+    
 </body>
 
 </html>
