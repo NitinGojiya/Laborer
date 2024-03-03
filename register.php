@@ -144,7 +144,8 @@
     </style>
 </head>
 <body>
-<form method="POST" action="register.php">
+
+<form action="register.php" method="post" enctype="multipart/form-data">
     <!--header1 section-->
     <header class="sticky1">
     <span class="logo">Laborer</span>
@@ -161,7 +162,7 @@
         </div>
         <div class="log-form">
             <div class="ip1-mobile"><p>your Photo  : </p></div>
-            <div class="photo"><input type="file" name="pic"></div>
+            <div class="photo"><input type="file" name="upload"></div>
         </div>
         <div class="log-form">
             <div class="ip1-mobile"><p>Name : </p></div>
@@ -192,16 +193,27 @@
 </body>
 </html>
 <?php
+
     if(isset($_POST['register']))
     {
+        include 'connect.php';
+        $nm=$_POST['nm'];
         $u_nm=$_POST['u_nm'];
-        $m_no=$_POST['m_no'];
         $psw=$_POST['psw'];
-
-            $con=mysqli_connect('localhost','root','',"wine");
-            $insert="INSERT INTO user VALUES ('$u_nm','$m_no','$psw','null','null','null','null','null')";
-            $query1=mysqli_query($con, $insert);
-            header('Location: http://localhost/WINE_/login.php');
-            exit;
-    }
+        $cpd=$_POST['cpd'];
+        $wk=$_POST['wk'];
+        $status="yes";
+        $photosname=$u_nm.$_FILES["upload"]["name"];
+        $type= $_FILES["upload"]["type"];
+        $tempname=$_FILES["upload"]["tmp_name"];
+        
+        $folder="profile_image/".$photosname;
+      
+        move_uploaded_file($tempname,$folder);
+        $sql="INSERT INTO `l_user`(`username`, `pass`, `name`, `w_type`, `status`, `charge`, `photo`) VALUES ('$u_nm','$psw','','$wk','$status','$cpd',' $folder')";
+        $result=mysqli_query($conn,$sql);
+       
+        error_reporting(0);
+      
+    }   
 ?>

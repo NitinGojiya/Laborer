@@ -163,12 +163,12 @@
             Login
         </div>
         <div class="log-form">
-            <div class="ip1-mobile"><p>Mobile Number : </p></div>
-            <div class="ip2-mobile"><input type="text" name="m_no1"></div>
+            <div class="ip1-mobile"><p>username: </p></div>
+            <div class="ip2-mobile"><input type="text" name="unm"></div>
         </div>
         <div class="log-form">
             <div class="ip1-mobile"><p>Password : </p></div>
-            <div class="ip2-mobile"><input type="password" name="psw1"></div>
+            <div class="ip2-mobile"><input type="password" name="psw"></div>
         </div>
         <div class="log-form-btn">
             <div class="submit_1"><p><input class="submit_in" type="submit" name="login" value="Login"></p></div>
@@ -183,46 +183,23 @@
 <?php
 if(isset($_POST['login']))
 {
-    $m_no1=$_POST['m_no1'];
-    $psw1=$_POST['psw1'];
+     
+    include 'connect.php';
+    $u_nm=$_POST['unm'];
+    $psw=$_POST['psw'];
 
-    $con=mysqli_connect('localhost','root','',"wine");
-    $select="select * from user";
-    $qry=mysqli_query($con,$select);
-
-    $con1=mysqli_connect('localhost','root','',"wine");
-    $del="delete from cart";
-    $delque=mysqli_query($con1,$del);
-
-        if($qry)
-        {
-            while ($row = mysqli_fetch_array($qry))
+  
+    $select="SELECT * FROM `l_user` ";
+    $qry=mysqli_query($conn,$select);
+     while ($row = mysqli_fetch_array($qry))
             {
-                $m_no=$row['m_no'];
-                $psw=$row['psw'];
-                if($m_no1!=$m_no || $psw1!=$psw)
-                {
-                    $cnt=1;
-                }
-
-                else
-                {
-                    $cnt=2;
-                }
-            }
-        }
-            if($cnt==1)
+              if($row['username']==$u_nm && $row['pass']==$psw)
+                    
             {
-                ?>
-                    <script>
-                    alert("Invalid Username or Password!");
-                    </script>
-                <?php
-            }
-            else if($cnt==2)
-            {
-                header('Location: http://localhost/WINE_/home.php');
+            echo "<script>alert('login succees');</script>";
                 exit;
             }
+            }
+      
 }
 ?>
