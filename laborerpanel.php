@@ -84,7 +84,61 @@
             display: flex;
         }
         /* main section */
-
+        .main{
+            position: relative;
+            padding: 20px;
+            width: 100%;
+        }
+        .main-top{
+            display: flex;
+            width: 100%
+        }
+        .thead{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .th{
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: darkblue;
+            height: 60px;
+        }
+        .th div{
+            width: 150px;
+            height: auto;
+            font-size: 1.3rem;
+            font-weight: 600;
+            
+        }
+        .contain{
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #191c24;
+            color: #ffffff;
+            transition: ease .5s;
+            height: 60px;
+        }
+        .contain div{
+            width: 150px;
+            height: auto;
+            font-size: 1.3rem;
+        }
+        .action-btn{ 
+            border: #000 1px solid ;
+            background-color: darkblue;
+            color: #ffffff;
+        }
+        a{
+            text-decoration: none;
+        }
       
     </style>
 </head>
@@ -94,24 +148,30 @@
             <ul>
                 <li><a href="#" class="logo">
                     <img src="alogo.png">
-                    <span class="nav-main">Admin</span></a>
+                    <span class="nav-main">User Name</span></a>
+                </li>
+
+                <li><a href="cancel.php">
+                    <img src="cancelled.png">
+                    <span class="nav-item">Arrived Reqest</span>
+                </a>
                 </li>
 
                 <li><a href="aadmin.php">
                 <img src="shopping.png">
-                    <span class="nav-item">Arrived Bookings</span>
+                    <span class="nav-item">Work Histroy</span>
                 </a>
                 </li>
 
                 <li><a href="approved.php">
                 <img src="approved.png">
-                    <span class="nav-item">Approved Bookings</span>
+                    <span class="nav-item">Work Type</span>
                 </a>
                 </li>
 
                 <li><a href="cancel.php">
                     <img src="cancelled.png">
-                    <span class="nav-item">Cancelled Bookings</span>
+                    <span class="nav-item">Work charge per Day</span>
                 </a>
                 </li>
 
@@ -123,7 +183,36 @@
             </ul>
         </nav>
         <section class="main">
-            
+        <div class="main-top">
+                <h1>Arrived Booking</h1>
+            </div>
+            <div class="thead">
+        <div class="th">
+            <div>Contracter Name</div>
+            <div>Address</Address></div>
+            <div>Date</div>
+            <div>Status</div>
+            <div>Action</div>
+        </div>
+        <?php
+        $con=mysqli_connect('localhost','root','',"dj");
+        $select="select * from book_request where status='panding'";
+        $qry=mysqli_query($con,$select);
+        while($row=mysqli_fetch_array($qry))
+        {
+            $id=$row['id'];
+            ?>
+            <div class="contain">
+                <div><?php echo $row['nm']; ?></div>
+                <div><?php echo $row['nm']; ?></div>
+                <div><?php echo $row['nm']; ?></div>
+                <div><?php echo $row['nm']; ?></div>
+                <form action="add-services.php" method="GET"><a  href="take.php?takeid=<?php echo $id;?>"><div class="action-btn">Take Action</div></a></form>
+        </div>
+            <?php
+        }
+        ?>
+    </div>
         </section>
     </div>
     

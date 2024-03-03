@@ -140,6 +140,13 @@
     .submit_in:hover{
         cursor: pointer;
     }
+    .log-form-btn a{
+        color: darkblue;
+    }
+    .log-form-btn a:hover{
+        font-size: 25px;
+        color: #fff;
+    }
    
     </style>
 </head>
@@ -187,6 +194,9 @@
         </div>
         <div class="log-form-btn">
             <div class="submit_1"><p><input class="submit_in" type="submit" name="register" value="Register"></p></div>
+        </div>
+        <div class="log-form-btn">
+            <div class="submit_1"><p><a class="submit_in" href="Conreg.php">Contractor Ragister?</a></p></div>
         </div>
     </section>
 </form>

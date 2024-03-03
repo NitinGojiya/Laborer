@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Special+Elite&family=Spectral+SC:wght@500&display=swap" rel="stylesheet">
-    <title>Login - Wine</title>
+    <title>Register - Wine</title>
     <style>
     *{
         padding: 0;
@@ -22,9 +22,8 @@
         outline: none;
     }
     :root{
-        --bg-color: #c0e4f4;
+        --bg-color: #191919;
         --secont-bg-color: #101010;
-        --main-color: #fff;
         --text-color: #000;
         --second-color: #000;
         --other-color: #808080;
@@ -34,7 +33,7 @@
         --p-font: 1.4rem;
     }
     body{
-        background-color: var(--bg-color);
+        background-color: #c0e4f4;
     }
     .sticky1{
         position: fixed;
@@ -58,6 +57,13 @@
     .navlist{
         display: flex;
     }
+    #menu-icon{
+        font-size: 42px;
+        color: var(--text-color);
+        z-index: 10001;
+        cursor: pointer;
+        display: none;
+    }
     .navlist a{
         color: var(--second-color);
         font-size: var(--p-font);
@@ -78,9 +84,8 @@
         font-size: 35px;
         text-align: left;
     }
-    .login{
+    .register{
         text-align: center;
-        align-items: center;
     }
     .heading{
         font-family: 'Caveat', cursive;
@@ -89,7 +94,6 @@
         margin-bottom: 3rem;
         color: #000;
         text-align: center;
-        margin-top: 140px;
     }
     .log-form{
         display: grid;
@@ -111,7 +115,7 @@
         font-weight: 600;
         transition: all ease .40s;
         font-family: 'Special Elite', serif;
-        align-items: center;
+        
     }
     .ip2-mobile input{
         border: solid #000;
@@ -136,63 +140,85 @@
     .submit_in:hover{
         cursor: pointer;
     }
+    .log-form-btn a{
+        color: darkblue;
+    }
+    .log-form-btn a:hover{
+        font-size: 25px;
+        color: #fff;
+    }
    
     </style>
 </head>
 <body>
-<form method="POST" action="login.php">
+
+<form action="register.php" method="post" enctype="multipart/form-data">
     <!--header1 section-->
     <header class="sticky1">
     <span class="logo">Laborer</span>
+       
         <ul class="navlist">
-        <li><a href="home.php">home</a></li>
-            <li><a href="#login">Login</a></li>
-            <li><a href="register.php">Rigester</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="#register">Register</a></li>
         </ul>
     </header>
 
-    <section class="login" id="login">
+    <section class="register" id="register">
         <div class="heading">
-            Login
+            Register
         </div>
+        
         <div class="log-form">
-            <div class="ip1-mobile"><p>username: </p></div>
-            <div class="ip2-mobile"><input type="text" name="unm"></div>
+            <div class="ip1-mobile"><p>User Name : </p></div>
+            <div class="ip2-mobile"><input type="text" name="u_nm"></div>
         </div>
+        
         <div class="log-form">
-            <div class="ip1-mobile"><p>Password : </p></div>
+            <div class="ip1-mobile"><p>Create Password : </p></div>
             <div class="ip2-mobile"><input type="password" name="psw"></div>
         </div>
+        <div class="log-form">
+            <div class="ip1-mobile"><p>Company Name : </p></div>
+            <div class="ip2-mobile"><input type="text" name="wk"></div>
+        </div>
+
+        <div class="log-form">
+            <div class="ip1-mobile"><p>Address : </p></div>
+            <div class="ip2-mobile"><input type="text" name="cpd"></div>
+        </div>
+
         <div class="log-form-btn">
-            <div class="submit_1"><p><input class="submit_in" type="submit" name="login" value="Login"></p></div>
+            <div class="submit_1"><p><input class="submit_in" type="submit" name="register" value="Register"></p></div>
         </div>
         <div class="log-form-btn">
-            <div class="submit_1"><p><a class="submit_in" href="forgot.php">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="register.php" class="submit_in">New User?</a></p></div>
+            <div class="submit_1"><p><a class="submit_in" href="Conreg.php">Laborer Ragister?</a></p></div>
         </div>
     </section>
 </form>
 </body>
 </html>
 <?php
-if(isset($_POST['login']))
-{
-     
-    include 'connect.php';
-    $u_nm=$_POST['unm'];
-    $psw=$_POST['psw'];
 
-  
-    $select="SELECT * FROM `l_user` ";
-    $qry=mysqli_query($conn,$select);
-     while ($row = mysqli_fetch_array($qry))
-            {
-              if($row['username']==$u_nm && $row['pass']==$psw)
-                    
-            {
-            echo "<script>alert('login succees');</script>";
-                exit;
-            }
-            }
+    if(isset($_POST['register']))
+    {
+        include 'connect.php';
+        $nm=$_POST['nm'];
+        $u_nm=$_POST['u_nm'];
+        $psw=$_POST['psw'];
+        $cpd=$_POST['cpd'];
+        $wk=$_POST['wk'];
+        $status="yes";
+        $photosname=$u_nm.$_FILES["upload"]["name"];
+        $type= $_FILES["upload"]["type"];
+        $tempname=$_FILES["upload"]["tmp_name"];
+        
+        $folder="profile_image/".$photosname;
       
-}
+        move_uploaded_file($tempname,$folder);
+        $sql="INSERT INTO `l_user`(`username`, `pass`, `name`, `w_type`, `status`, `charge`, `photo`) VALUES ('$u_nm','$psw','','$wk','$status','$cpd',' $folder')";
+        $result=mysqli_query($conn,$sql);
+       
+        error_reporting(0);
+      
+    }   
 ?>
