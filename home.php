@@ -121,7 +121,7 @@
         <div class="fa-solid fa-bars" id="menu-icon"></div>
         <ul class="navlist">
             <li><a href="#home">Home</a></li>
-            <li><a href="laborerpanel.php">Laborer</a></li>
+            <li><a href="Laborer.php">Laborer</a></li>
             <li><a href="#Contect us">Contect us</a></li>
             <li><a href="login.php">Login</a></li>
         </ul>
