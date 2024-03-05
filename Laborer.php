@@ -167,22 +167,25 @@
             <li><a href="Laborer.php">Laborer</a></li>
             <li><a href="#Contect us">Contect us</a></li>
             <li><a href="login.php">Login</a></li>
+            <li><a href="logout.php">logout</a></li>
         </ul>
     </header>
     <section class="home" id="home">
-    <form action="" method="post">
+    <form action="Laborer.php" method="post">
             
                 <?php
               
                  
                     error_reporting(0);
                     include 'connect.php';
-                 
+                    session_start();
+
 
                        
                     $sql = "SELECT * FROM `l_user` where status='yes'";
                     $result = mysqli_query($conn, $sql);
-                 
+                
+               
                     while ($row = mysqli_fetch_array($result)) {
 
                 ?>
@@ -203,15 +206,15 @@
                                 <div>
                                     
                                 </div>
-                                <div></form><form action="doctor_book.php" method="get">
+                                <div></form><form action="book.php" method="get">
                                 <!-- <input type="submit" value="Book now" id="btn_book" name="book_now"> -->
-                                <button id="btn_book">
-                                <a style="color: white; text-decoration:none;" href="#">Book now </a>
+                                <button id="btn_book" name="book">
+                                <a style="color: white; text-decoration:none;" href="book.php?user=<?php echo $row['username']?>">Book now </a>
                                 </button>
                             
                                    </div>
                             </div>
-                        </div> <?php }
+                        </div> <?php }  
                          ?>
                          </div>
                        

@@ -195,19 +195,20 @@
             <div>Action</div>
         </div>
         <?php
-        $con=mysqli_connect('localhost','root','',"dj");
-        $select="select * from book_request where status='panding'";
-        $qry=mysqli_query($con,$select);
+   include 'connect.php';
+
+        $select="SELECT * FROM `book` where status='pending'";
+        $qry=mysqli_query($conn,$select);
         while($row=mysqli_fetch_array($qry))
         {
-            $id=$row['id'];
+          
             ?>
             <div class="contain">
-                <div><?php echo $row['nm']; ?></div>
-                <div><?php echo $row['nm']; ?></div>
-                <div><?php echo $row['nm']; ?></div>
-                <div><?php echo $row['nm']; ?></div>
-                <form action="add-services.php" method="GET"><a  href="take.php?takeid=<?php echo $id;?>"><div class="action-btn">Take Action</div></a></form>
+                <div><?php echo $row['c_user']; ?></div>
+                <div><?php echo $row['address']; ?></div>
+                <div><?php echo $row['date']; ?></div>
+                <div><?php echo $row['l_user']; ?></div>
+                <form action="add-services.php" method="GET"><a  href="take.php?takeid=<?php?>"><div class="action-btn">Take Action</div></a></form>
         </div>
             <?php
         }

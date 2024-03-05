@@ -1,3 +1,25 @@
+<?php
+
+    if(isset($_POST['cregister']))
+    {
+        include 'connect.php';
+     $unm=$_POST['unm'];
+     $psw=$_POST['psw'];
+     $cname=$_POST['cname'];
+     $add=$_POST['add'];
+       
+    $sql="INSERT INTO `c_user`(`unm`, `psw`, `cname`, `add`) VALUES ('$unm','$psw','$cname','$add')";
+    $result=mysqli_query($conn,$sql);
+        error_reporting(0);
+      if($result)
+      {
+        header('location:login.php');
+      
+
+      }
+    }   
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,7 +174,7 @@
 </head>
 <body>
 
-<form action="register.php" method="post" enctype="multipart/form-data">
+<form action="conreg.php" method="post" enctype="multipart/form-data">
     <!--header1 section-->
     <header class="sticky1">
     <span class="logo">Laborer</span>
@@ -170,7 +192,7 @@
         
         <div class="log-form">
             <div class="ip1-mobile"><p>User Name : </p></div>
-            <div class="ip2-mobile"><input type="text" name="u_nm"></div>
+            <div class="ip2-mobile"><input type="text" name="unm"></div>
         </div>
         
         <div class="log-form">
@@ -179,16 +201,16 @@
         </div>
         <div class="log-form">
             <div class="ip1-mobile"><p>Company Name : </p></div>
-            <div class="ip2-mobile"><input type="text" name="wk"></div>
+            <div class="ip2-mobile"><input type="text" name="cname"></div>
         </div>
 
         <div class="log-form">
             <div class="ip1-mobile"><p>Address : </p></div>
-            <div class="ip2-mobile"><input type="text" name="cpd"></div>
+            <div class="ip2-mobile"><input type="text" name="add"></div>
         </div>
 
         <div class="log-form-btn">
-            <div class="submit_1"><p><input class="submit_in" type="submit" name="register" value="Register"></p></div>
+            <div class="submit_1"><p><input class="submit_in" type="submit" name="cregister" value="Register"></p></div>
         </div>
         <div class="log-form-btn">
             <div class="submit_1"><p><a class="submit_in" href="Conreg.php">Laborer Ragister?</a></p></div>
@@ -197,28 +219,3 @@
 </form>
 </body>
 </html>
-<?php
-
-    if(isset($_POST['register']))
-    {
-        include 'connect.php';
-        $nm=$_POST['nm'];
-        $u_nm=$_POST['u_nm'];
-        $psw=$_POST['psw'];
-        $cpd=$_POST['cpd'];
-        $wk=$_POST['wk'];
-        $status="yes";
-        $photosname=$u_nm.$_FILES["upload"]["name"];
-        $type= $_FILES["upload"]["type"];
-        $tempname=$_FILES["upload"]["tmp_name"];
-        
-        $folder="profile_image/".$photosname;
-      
-        move_uploaded_file($tempname,$folder);
-        $sql="INSERT INTO `l_user`(`username`, `pass`, `name`, `w_type`, `status`, `charge`, `photo`) VALUES ('$u_nm','$psw','','$wk','$status','$cpd',' $folder')";
-        $result=mysqli_query($conn,$sql);
-       
-        error_reporting(0);
-      
-    }   
-?>

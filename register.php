@@ -1,3 +1,38 @@
+<?php
+
+    if(isset($_POST['register']))
+    {
+        include 'connect.php';
+        $nm=$_POST['nm'];
+        $u_nm=$_POST['u_nm'];
+        $psw=$_POST['psw'];
+        $cpd=$_POST['cpd'];
+        $wk=$_POST['wk'];
+        $status="yes";
+        $photosname=$u_nm.$_FILES["upload"]["name"];
+        $type= $_FILES["upload"]["type"];
+        $tempname=$_FILES["upload"]["tmp_name"];
+        
+        $folder="profile_image/".$photosname;
+      
+        move_uploaded_file($tempname,$folder);
+        $sql="INSERT INTO `l_user`(`username`, `pass`, `name`, `w_type`, `status`, `charge`, `photo`) VALUES ('$u_nm','$psw','','$wk','$status','$cpd',' $folder')";
+        $result=mysqli_query($conn,$sql);
+    if($result)
+      {
+       
+       
+        header('location:login.php');
+      
+
+      }
+        error_reporting(0);
+      
+    }   
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -202,28 +237,3 @@
 </form>
 </body>
 </html>
-<?php
-
-    if(isset($_POST['register']))
-    {
-        include 'connect.php';
-        $nm=$_POST['nm'];
-        $u_nm=$_POST['u_nm'];
-        $psw=$_POST['psw'];
-        $cpd=$_POST['cpd'];
-        $wk=$_POST['wk'];
-        $status="yes";
-        $photosname=$u_nm.$_FILES["upload"]["name"];
-        $type= $_FILES["upload"]["type"];
-        $tempname=$_FILES["upload"]["tmp_name"];
-        
-        $folder="profile_image/".$photosname;
-      
-        move_uploaded_file($tempname,$folder);
-        $sql="INSERT INTO `l_user`(`username`, `pass`, `name`, `w_type`, `status`, `charge`, `photo`) VALUES ('$u_nm','$psw','','$wk','$status','$cpd',' $folder')";
-        $result=mysqli_query($conn,$sql);
-       
-        error_reporting(0);
-      
-    }   
-?>
