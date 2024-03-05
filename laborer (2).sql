@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 03, 2024 at 11:27 AM
+-- Generation Time: Mar 05, 2024 at 07:35 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -20,6 +20,52 @@ SET time_zone = "+00:00";
 --
 -- Database: `laborer`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book`
+--
+
+DROP TABLE IF EXISTS `book`;
+CREATE TABLE IF NOT EXISTS `book` (
+  `c_user` varchar(250) NOT NULL,
+  `l_user` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `address` varchar(250) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(250) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`c_user`, `l_user`, `address`, `date`, `status`) VALUES
+('nitin123@', 'nitin@', 'dwarka2', '2024-03-06 00:53:56', 'pending'),
+('nitin123@', 'nitin@', 'dwarka2', '2024-03-06 00:56:34', 'pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `c_user`
+--
+
+DROP TABLE IF EXISTS `c_user`;
+CREATE TABLE IF NOT EXISTS `c_user` (
+  `unm` varchar(200) NOT NULL,
+  `psw` varchar(200) NOT NULL,
+  `cname` varchar(200) NOT NULL,
+  `address` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  UNIQUE KEY `unm` (`unm`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `c_user`
+--
+
+INSERT INTO `c_user` (`unm`, `psw`, `cname`, `address`) VALUES
+('nitin123@', '123', 'krishna', 'dwarka2'),
+('nitin131@', '123', 'krishna', 'dwarka2');
 
 -- --------------------------------------------------------
 
