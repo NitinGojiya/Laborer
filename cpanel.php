@@ -148,16 +148,16 @@
             <ul>
                 <li><a href="#" class="logo">
                     <img src="alogo.png">
-                    <span class="nav-main">User Name<?php session_start(); echo $_SESSION['lunm'] ;?></span></a>
+                    <span class="nav-main">User Name<?php session_start(); echo $_SESSION['cunm'] ;?></span></a>
                 </li>
 
-                <li><a href="laborerpanel.php">
+                <li><a href="cpanel.php">
                     <img src="cancelled.png">
-                    <span class="nav-item">Arrived Request</span>
+                    <span class="nav-item">send request</span>
                 </a>
                 </li>
 
-                <li><a href="workhistory.php">
+                <li><a href="cworkhistory.php">
                 <img src="shopping.png">
                     <span class="nav-item">Work Histroy</span>
                 </a>
@@ -184,15 +184,15 @@
         </nav>
         <section class="main">
         <div class="main-top">
-                <h1>Request</h1>
+                <h1>Request Send</h1>
             </div>
             <div class="thead">
         <div class="th">
-            <div>Contracter Name</div>
+            <div>laborer Name</div>
             <div>Address</Address></div>
             <div>Date</div>
         
-            <div>Action</div>
+           
         </div>
         <?php
    include 'connect.php';
@@ -204,11 +204,11 @@
           
             ?>
             <div class="contain">
-                <div><?php echo $row['name']; ?></div>
+                <div><?php echo $row['l_user']; ?></div>
                 <div><?php echo $row['address']; ?></div>
                 <div><?php echo $row['date']; ?></div>
           
-                <form action="request.php" method="GET"><a  href="request.php?id=<?php echo $row['id']?>"><div class="action-btn">Accept</div></a></form>
+               
         </div>
             <?php
         }

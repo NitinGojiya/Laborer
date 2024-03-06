@@ -184,20 +184,20 @@
         </nav>
         <section class="main">
         <div class="main-top">
-                <h1>Request</h1>
+                <h1>Histroy</h1>
             </div>
             <div class="thead">
         <div class="th">
             <div>Contracter Name</div>
             <div>Address</Address></div>
             <div>Date</div>
-        
-            <div>Action</div>
+           
+            
         </div>
         <?php
    include 'connect.php';
 
-        $select="SELECT * FROM `book` where status='pending'";
+        $select="SELECT * FROM `book` where status='accept'";
         $qry=mysqli_query($conn,$select);
         while($row=mysqli_fetch_array($qry))
         {
@@ -207,8 +207,8 @@
                 <div><?php echo $row['name']; ?></div>
                 <div><?php echo $row['address']; ?></div>
                 <div><?php echo $row['date']; ?></div>
-          
-                <form action="request.php" method="GET"><a  href="request.php?id=<?php echo $row['id']?>"><div class="action-btn">Accept</div></a></form>
+                
+                
         </div>
             <?php
         }

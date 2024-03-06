@@ -165,7 +165,7 @@
         <ul class="navlist">
             <li><a href="home.php">Home</a></li>
             <li><a href="Laborer.php">Laborer</a></li>
-            <li><a href="#Contect us">Contect us</a></li>
+            <li><a href="cpanel.php">Request/Accept</a></li>
             <li><a href="login.php">Login</a></li>
             <li><a href="logout.php">logout</a></li>
         </ul>
