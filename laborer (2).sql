@@ -40,9 +40,6 @@ CREATE TABLE IF NOT EXISTS `book` (
 -- Dumping data for table `book`
 --
 
-INSERT INTO `book` (`c_user`, `l_user`, `address`, `date`, `status`) VALUES
-('nitin123@', 'nitin@', 'dwarka2', '2024-03-06 00:53:56', 'pending'),
-('nitin123@', 'nitin@', 'dwarka2', '2024-03-06 00:56:34', 'pending');
 
 -- --------------------------------------------------------
 
@@ -63,9 +60,7 @@ CREATE TABLE IF NOT EXISTS `c_user` (
 -- Dumping data for table `c_user`
 --
 
-INSERT INTO `c_user` (`unm`, `psw`, `cname`, `address`) VALUES
-('nitin123@', '123', 'krishna', 'dwarka2'),
-('nitin131@', '123', 'krishna', 'dwarka2');
+
 
 -- --------------------------------------------------------
 
@@ -88,10 +83,6 @@ CREATE TABLE IF NOT EXISTS `l_user` (
 --
 -- Dumping data for table `l_user`
 --
-
-INSERT INTO `l_user` (`username`, `pass`, `name`, `w_type`, `status`, `charge`, `photo`) VALUES
-('nitin@', '123', 'nitin', 'color', 'yes', '500', ''),
-('nitin123@', '123', '', 'color', 'yes', '400', ' profile_image/nitin123@nitin.jpg');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
